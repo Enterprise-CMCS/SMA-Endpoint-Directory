@@ -74,6 +74,6 @@ This resource provides direct links to each state's Medicaid provider directory.
 
 ## About This Resource
 
-This directory is maintained as part of the State Medicaid Agency (SMA) Provider Directory initiative. For more information about Medicaid interoperability initiatives, please refer to the [SMA Endpoint Directory](https://github.com/Enterpise-CMCS/SMA-Endpoint-Directory).
+This directory is maintained as part of the State Medicaid Agency (SMA) Provider Directory initiative. For more information about Medicaid interoperability initiatives, please refer to the [SMA Endpoint Directory](https://github.com/Enterprise-CMCS/SMA-Endpoint-Directory).
 
 Last Updated: May 15, 2025
