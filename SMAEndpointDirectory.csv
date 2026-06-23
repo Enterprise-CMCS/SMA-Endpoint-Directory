@@ -1,0 +1,59 @@
+﻿State Medicaid Agency (SMA) Interoperability and Patient Access Endpoint Directory Data Gathering Workbook,,,,,,,,,,,,
+,,,,,,,,,,,,
+Purpose:,"Data and Systems Group (DSG), within Center for Medicaid and CHIP Services (CMCS) is consolidating API endpoints and related information on State Medicaid Agencty (SMA) Patient Access and Provider Directory APIs implemented in accordance with the Interoperability and Patient Access (IPPA) Final Rule* into a single Endpoint Directory which will be accessible and collected on GitHub after the information collected has been scrubbed, standardized, and reviewed for accuracy. 
+
+Increasing discoverability and awareness of available APIs through this directory is a first step to achieving the goals and intentions of the Interoperability and Patient Access Final Rule. A central directory allows Health IT Developers and vendors to improve interoperability and unleash innovation to create applications and services that enable better access to health information for patients and healthcare providers to make informed decisions which can lead to better care and improved patient outcomes.
+",,,,,,,,,,,
+,,,,,,,,,,,,
+,,,,,,,,,,,,
+* https://www.federalregister.gov/documents/2020/05/01/2020-05050/medicare-and-medicaid-programs-patient-protection-and-affordable-care-act-interoperability-and,,,,,,,,,,,,
+,,,,,,,,,,,,
+Details on Questions,,,,,,,,,,,,
+General/ Patient Access/ Provider Directory,Question,Type,Guidance,,,,,,,,,
+General Questions,Notes/Description,Open Text,"If needed, additional information can be provided here. Please be as brief as possible.",,,,,,,,,
+,Clarifications or additional details on provided data,Open Text,"If any fields need additional information or clarification, provide it in the format: Question/Clarification.",,,,,,,,,
+,Information as of date,Open Text,Provide the date you are completing this survey (not the date the APIs were published.),,,,,,,,,
+,Member support contact phone number,Open Text,Provide the phone number for Member support for cases where any enrollees or general public find this directory and have questions.,,,,,,,,,
+,Member support contact email,Open Text,Provide the contact email for cases where any enrollees or general public find this directory and have questions.,,,,,,,,,
+,Do Members (Beneficiaries) have ability to view records of when and with whom their data have been shared via the API?,Drop down,"The preamble to the Rule encourages (but does not require) payers to consider establishing functionality that would allow individuals to view a record of when and with whom their data have been shared via the API. ""...we encourage payers to consider setting up functionality to allow patients to view a record of when and with whom their data have been shared via the API.""
+- Section F. Compliance With Existing Privacy and Security Requirements",,,,,,,,,
+Patient Access API Questions,Production URL for Claims Data (CARIN BB),Open Text,Provide the URL for the production version of the claims data from the Patient Access API (CARIN Blue Button).,,,,,,,,,
+,"Production URL for Member Health Data (PDex), if different then claims URL",Open Text,"If Health Data is being made available, and the base URL is different then the Claims Data URL, provide that here. ",,,,,,,,,
+,"Production URL for Formulary, if different then claims URL",Open Text,"If the base URL for Formulary is different then the Claims Data URL, provide that here. If Formulary has a public URL separate from the Patient Access URL, provide that here.",,,,,,,,,
+,"Production URL for CHIP data, if different then Medicaid",Open Text,"If CHIP data is being provided in a separate URL, provide that here.",,,,,,,,,
+,Status,Drop down,"Choose the current status of your API: 
+Active = The API is currently live and accessible
+Offline = The API was published but is currently not accessible
+In Development = Implementation of the API has started but is not live yet
+Not Yet Started = Development has not started yet",,,,,,,,,
+,Patient Access API Implementation Date,Open Text,Provide the go-live date of the API (if available).,,,,,,,,,
+,FHIR Capability Statement Link,Open Text,"If your API has a published capability statement, please provide the link here. It is usually the base URL followed by /metadata.",,,,,,,,,
+,"Data Refresh Frequency (e.g. Real-Time, Hourly, Daily, Weekly, Monthly) ",Open Text,Provide the frequency with which the data returned is refreshed.,,,,,,,,,
+,"Are claims, encounters, and clinical data with dates of service on or after January 1, 2016 available? ",Drop down,"Per final rule requirements (42 CFR 431.60(g)(1)(i)), choose if the data goes back to 1/1/2016 (if available.)",,,,,,,,,
+,FHIR Version ,Drop down,Choose the version of FHIR.,,,,,,,,,
+,Authentication Implementation Details,Open Text,Provide details about how app developers will authenticate to your API.,,,,,,,,,
+,Authentication Protocol ,Drop down,Choose the Authentication Protocol for your API from the dropdown.,,,,,,,,,
+,IG(s) Supported,Open Text,Provide the URLs to all published Implementation Guides supported by your API.,,,,,,,,,
+,Does the API use the recommended Implementation Guides (Y/N),Drop down,"Choose if the API uses the recommended Implementation Guide (Y/N).
+https://www.cms.gov/regulations-and-guidance/guidance/interoperability/index#CMS-Interoperability-and-Patient-Access-Final-Rule",,,,,,,,,
+,Sandbox/Test URL(s),Open Text,Provide the URL to the sandbox/test environment (if available).,,,,,,,,,
+,API Registration Info,Open Text,Provide the details for how an app developer can register for your API.,,,,,,,,,
+,Developer Support Contact Info,Open Text,"Provide contact info (email, website, phone #) for developer support.",,,,,,,,,
+Provider Directory Questions,Provider Directory Production URL,Open Text,Provide the URL of the production API.,,,,,,,,,
+,Status,Drop down,"Choose the current status of your API: 
+Active = The API is currently live and accessible
+Offline = The API was published but is currently not accessible
+In Development = Implementation of the API has started but is not live yet
+Not Yet Started = Development has not started yet",,,,,,,,,
+,Provider Directory API Implementation Date,Open Text,Provide the go-live date of the API (if available).,,,,,,,,,
+,FHIR Capability Statement Link,Open Text,"If your API has a published capability statement, please provide the link here. It is usually the base URL followed by /metadata.",,,,,,,,,
+,"Data Refresh Frequency (e.g. Real-Time, Hourly, Daily, Weekly, Monthly) ",Open Text,Provide the frequency with which the data returned is refreshed.,,,,,,,,,
+,Is the API Public? (yes/no),Drop down,Final Rule states the Provider Directory should be public. Please choose Yes or No (42 CFR 431.70(a)).,,,,,,,,,
+,FHIR Version,Drop down,Choose the version of FHIR.,,,,,,,,,
+,IG(s) Supported,Open Text,Provide the URLs to all published Implementation Guides supported by your API.,,,,,,,,,
+,Does the API use Implementation Guide recommended in Final Rule (Y/N),Drop down,"Choose if the API uses the recommended Implementation Guide (Y/N). 
+https://www.cms.gov/regulations-and-guidance/guidance/interoperability/index#CMS-Interoperability-and-Patient-Access-Final-Rule
+ ",,,,,,,,,
+,Sandbox/Test URL,Open Text,Provide the URL to the sandbox/test environment (if available).,,,,,,,,,
+,"API registration Info (URL, email)",Open Text,Provide the details for how an app developer can register for your API.,,,,,,,,,
+,Developer Support Contact Info,Open Text,"Provide contact info (email, website, phone #) for developer support.",,,,,,,,,
