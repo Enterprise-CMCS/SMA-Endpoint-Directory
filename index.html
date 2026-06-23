@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>State Medicaid Agency Directory Hub</title>
+    <meta name="description" content="Find State Medicaid Agency provider directories and interoperability API endpoint information.">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="site-header">
+      <div class="official-banner">
+        <span aria-hidden="true" class="banner-dot"></span>
+        <span>An official CMS resource for State Medicaid Agency directory information</span>
+      </div>
+
+      <div class="header-inner">
+        <a class="brand" href="#overview" aria-label="State Medicaid Agency Directory Hub home">
+          <img src="CMS.png" alt="Centers for Medicare & Medicaid Services">
+          <span>State Medicaid Agency Directory Hub</span>
+        </a>
+
+        <nav class="primary-nav" aria-label="Primary navigation">
+          <a href="#overview">Overview</a>
+          <a href="#find-endpoints">Find endpoints</a>
+          <a href="#provider-directories">Provider directories</a>
+          <a href="#submit-updates">Submit updates</a>
+          <a href="#resources">Resources</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="overview" aria-labelledby="page-title">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <h1 id="page-title">State Medicaid Agency Directory Hub</h1>
+            <p class="lead">Find state Medicaid provider directory links and interoperability API endpoints in one CMS-maintained resource.</p>
+            <div class="hero-actions" aria-label="Primary actions">
+              <a class="button button-primary" href="#find-endpoints">Search endpoints</a>
+              <a class="button button-secondary" href="#provider-directories">View provider directories</a>
+              <a class="button button-ghost" href="#submit-updates">Submit an update</a>
+            </div>
+          </div>
+
+          <div class="status-panel" aria-label="Directory status summary">
+            <dl class="metric-grid">
+              <div>
+                <dt>States and territories</dt>
+                <dd id="summary-state-count">-</dd>
+              </div>
+              <div>
+                <dt>Endpoint records</dt>
+                <dd id="summary-endpoint-count">-</dd>
+              </div>
+              <div>
+                <dt>Active endpoints</dt>
+                <dd id="summary-active-count">-</dd>
+              </div>
+              <div>
+                <dt>Workbook</dt>
+                <dd><a href="SMAEndpointDirectory.xlsx">XLSX</a></dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="audience-band" aria-labelledby="audience-title">
+        <div class="container">
+          <h2 id="audience-title">Choose the path that fits your task</h2>
+          <div class="audience-grid">
+            <article>
+              <h3>Beneficiaries and the public</h3>
+              <p>Find the public provider directory status for a state or territory.</p>
+              <a href="#provider-directories">Go to provider directories</a>
+            </article>
+            <article>
+              <h3>Application developers</h3>
+              <p>Review production URLs, capability statements, registration details, sandbox links, and support contacts.</p>
+              <a href="#find-endpoints">Go to endpoint search</a>
+            </article>
+            <article>
+              <h3>State and CMS maintainers</h3>
+              <p>Check workbook freshness and prepare corrections for review.</p>
+              <a href="#submit-updates">Go to update requests</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="find-endpoints" aria-labelledby="endpoint-title">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <h2 id="endpoint-title">Find interoperability endpoints</h2>
+              <p>Search Medicaid endpoint records derived from the canonical XLSX workbook.</p>
+            </div>
+            <a class="button button-secondary" href="SMAEndpointDirectory.xlsx">Download workbook</a>
+          </div>
+
+          <form class="filter-panel" id="endpoint-filters" aria-describedby="endpoint-result-count">
+            <div class="field field-wide">
+              <label for="endpoint-query">Search endpoints</label>
+              <input id="endpoint-query" name="query" type="search" autocomplete="off" placeholder="State, URL, vendor, support contact">
+            </div>
+            <div class="field">
+              <label for="endpoint-state">State or territory</label>
+              <select id="endpoint-state" name="state"></select>
+            </div>
+            <div class="field">
+              <label for="endpoint-api-type">API type</label>
+              <select id="endpoint-api-type" name="apiType"></select>
+            </div>
+            <div class="field">
+              <label for="endpoint-status">Status</label>
+              <select id="endpoint-status" name="status"></select>
+            </div>
+            <div class="filter-actions">
+              <button class="button button-primary" type="submit">Apply filters</button>
+              <button class="button button-ghost" type="button" id="clear-endpoint-filters">Clear filters</button>
+            </div>
+          </form>
+
+          <p class="result-count" id="endpoint-result-count" aria-live="polite"></p>
+
+          <div class="table-wrap">
+            <table>
+              <caption class="sr-only">SMA interoperability endpoint records</caption>
+              <thead>
+                <tr>
+                  <th scope="col">State</th>
+                  <th scope="col">API type</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Production URL</th>
+                  <th scope="col">Vendor</th>
+                  <th scope="col">Details</th>
+                </tr>
+              </thead>
+              <tbody id="endpoint-table-body"></tbody>
+            </table>
+          </div>
+
+          <section class="detail-panel" id="endpoint-detail" hidden tabindex="-1" aria-labelledby="endpoint-detail-title">
+            <div class="detail-header">
+              <h3 id="endpoint-detail-title">Endpoint details</h3>
+              <button class="button button-ghost compact" type="button" id="close-endpoint-detail">Close</button>
+            </div>
+            <div id="endpoint-detail-content"></div>
+          </section>
+        </div>
+      </section>
+
+      <section class="section section-muted" id="provider-directories" aria-labelledby="provider-title">
+        <div class="container">
+          <div class="section-header">
+            <div>
+              <h2 id="provider-title">Provider directories</h2>
+              <p>Review state and territory provider directory website availability from the workbook.</p>
+            </div>
+            <span class="data-note" id="provider-data-note"></span>
+          </div>
+
+          <form class="filter-panel provider-filter-panel" id="provider-filters" aria-describedby="provider-result-count">
+            <div class="field field-wide">
+              <label for="provider-query">Search states and territories</label>
+              <input id="provider-query" name="query" type="search" autocomplete="off" placeholder="State or territory">
+            </div>
+            <div class="field">
+              <label for="provider-availability">Availability</label>
+              <select id="provider-availability" name="availability">
+                <option value="All">All</option>
+                <option value="Available">Available</option>
+                <option value="Unavailable">Unavailable</option>
+              </select>
+            </div>
+            <div class="filter-actions">
+              <button class="button button-primary" type="submit">Apply filters</button>
+              <button class="button button-ghost" type="button" id="clear-provider-filters">Clear filters</button>
+            </div>
+          </form>
+
+          <p class="result-count" id="provider-result-count" aria-live="polite"></p>
+
+          <div class="table-wrap">
+            <table>
+              <caption class="sr-only">Provider directory website links by state and territory</caption>
+              <thead>
+                <tr>
+                  <th scope="col">State or territory</th>
+                  <th scope="col">Information as of</th>
+                  <th scope="col">Provider directory website</th>
+                  <th scope="col">Prior authorization timeframes</th>
+                </tr>
+              </thead>
+              <tbody id="provider-table-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="submit-updates" aria-labelledby="updates-title">
+        <div class="container narrow">
+          <h2 id="updates-title">Submit an update for review</h2>
+          <p>This prototype prepares an update request for review. It does not send data to CMS or GitHub.</p>
+
+          <div class="error-summary" id="update-error-summary" hidden tabindex="-1" role="alert" aria-labelledby="update-error-title">
+            <h3 id="update-error-title">There is a problem</h3>
+            <ul id="update-error-list"></ul>
+          </div>
+
+          <form class="update-form" id="update-form" novalidate>
+            <div class="field">
+              <label for="update-state">State or territory</label>
+              <select id="update-state" name="state" aria-describedby="update-state-error"></select>
+              <p class="field-error" id="update-state-error"></p>
+            </div>
+
+            <div class="field">
+              <label for="update-type">Update type</label>
+              <select id="update-type" name="updateType" aria-describedby="update-type-error">
+                <option value="">Select an update type</option>
+                <option>Provider directory website</option>
+                <option>Patient Access endpoint</option>
+                <option>Provider Directory API endpoint</option>
+                <option>Provider Access endpoint</option>
+                <option>Payer-to-Payer endpoint</option>
+                <option>Prior Authorization endpoint</option>
+                <option>Support contact</option>
+                <option>Status or freshness</option>
+                <option>Other clarification</option>
+              </select>
+              <p class="field-error" id="update-type-error"></p>
+            </div>
+
+            <div class="field">
+              <label for="submitter-email">Submitter email</label>
+              <input id="submitter-email" name="submitterEmail" type="email" autocomplete="email" aria-describedby="submitter-email-error">
+              <p class="field-error" id="submitter-email-error"></p>
+            </div>
+
+            <div class="field">
+              <label for="update-summary">Requested change</label>
+              <textarea id="update-summary" name="summary" rows="5" aria-describedby="update-summary-error"></textarea>
+              <p class="field-error" id="update-summary-error"></p>
+            </div>
+
+            <button class="button button-primary" type="submit">Review update request</button>
+          </form>
+
+          <section class="review-panel" id="update-review" hidden aria-labelledby="update-review-title">
+            <h3 id="update-review-title">Review request</h3>
+            <dl id="update-review-list"></dl>
+            <div class="review-actions">
+              <button class="button button-primary" type="button" id="confirm-update">Confirm request</button>
+              <button class="button button-ghost" type="button" id="edit-update">Edit request</button>
+            </div>
+          </section>
+
+          <section class="confirmation-panel" id="update-confirmation" hidden tabindex="-1" aria-labelledby="update-confirmation-title">
+            <h3 id="update-confirmation-title">Update request prepared</h3>
+            <p>Use the reviewed details with the CMS mailbox or repository review process selected for this project.</p>
+          </section>
+        </div>
+      </section>
+
+      <section class="section section-muted" id="resources" aria-labelledby="resources-title">
+        <div class="container resource-grid">
+          <div>
+            <h2 id="resources-title">Resources</h2>
+            <p>The workbook remains the source of truth. The site data file is generated from the workbook for browser performance.</p>
+          </div>
+          <ul class="resource-list">
+            <li><a href="SMAEndpointDirectory.xlsx">Download SMAEndpointDirectory.xlsx</a></li>
+            <li><a href="https://www.cms.gov/priorities/key-initiatives/burden-reduction/interoperability/policies-and-regulations/cms-interoperability-and-patient-access-final-rule-cms-9115-f">CMS Interoperability and Patient Access Final Rule</a></li>
+            <li><a href="https://confluence.hl7.org/spaces/FHIR/pages/113672758/Endpoint+directory+implementations+and+frameworks">CARIN Alliance FHIR endpoint directory framework</a></li>
+            <li><a href="https://www.healthit.gov/topic/interoperability/investments/lantern-project">ASTP Lantern</a></li>
+            <li><a href="mailto:SMAEndpointDirectory@cms.hhs.gov">SMAEndpointDirectory@cms.hhs.gov</a></li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>This directory is maintained as part of the Medicaid Information Technology Architecture initiative.</p>
+      </div>
+    </footer>
+
+    <script src="assets/directory-data.js"></script>
+    <script src="assets/directory-utils.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
